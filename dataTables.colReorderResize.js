@@ -1253,6 +1253,8 @@ $.extend( ColReorder.prototype, {
 
 					var tableMain = $('div.dataTables_scrollBody>table', this.s.dt.nTableWrapper)[0];
 
+					var tableMainHeadRow = $('div.dataTables_scrollBody>table>thead>tr', this.s.dt.nTableWrapper)[0];
+
 
 
 					//Resize the columns
@@ -1275,15 +1277,14 @@ $.extend( ColReorder.prototype, {
 
 					else
 
-						$($(tableMain)[0].childNodes[0].childNodes[0].childNodes[visibleColumnIndex + 1]).width(this.s.mouse.nextStartWidth - moveLength);
-
-
+						$(tableMainHeadRow.childNodes[visibleColumnIndex + 1]).width(this.s.mouse.nextStartWidth - moveLength);
 
 					//resize col >thead>tr>th[]
 
-					$($(tableMain)[0].childNodes[0].childNodes[0].childNodes[visibleColumnIndex]).width(this.s.mouse.startWidth + moveLength);
+					var th = $(tableMainHeadRow.childNodes[visibleColumnIndex])[0];
+					$(tableMainHeadRow.childNodes[visibleColumnIndex]).width(this.s.mouse.startWidth + moveLength);
 
-
+					th = $(tableMainHeadRow.childNodes[visibleColumnIndex])[0];
 
 				}
 
